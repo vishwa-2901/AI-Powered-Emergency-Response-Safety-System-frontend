@@ -1,0 +1,4 @@
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout'; import ProtectedRoute from './components/ProtectedRoute';
+import Login from './pages/Login'; import Register from './pages/Register'; import Dashboard from './pages/Dashboard'; import History from './pages/History'; import Admin from './pages/Admin'; import Responder from './pages/Responder';
+export default function App(){return <Routes><Route path="/login" element={<Login/>}/><Route path="/register" element={<Register/>}/><Route element={<ProtectedRoute><Layout/></ProtectedRoute>}><Route path="/dashboard" element={<Dashboard/>}/><Route path="/history" element={<History/>}/><Route path="/admin" element={<ProtectedRoute roles={['ADMIN']}><Admin/></ProtectedRoute>}/><Route path="/responder" element={<ProtectedRoute roles={['RESPONDER']}><Responder/></ProtectedRoute>}/></Route><Route path="*" element={<Navigate to="/dashboard" replace/>}/></Routes>}
